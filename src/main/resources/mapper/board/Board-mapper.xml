@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sharBoard.board.mapper.BoardMapper">
+
+    <select id="listBoard" resultType="com.sharBoard.board.service.BoardVO">
+
+        SELECT
+            board_id,
+            board_title,
+            board_writer,
+            board_crd_date,
+            board_hit
+         FROM
+            board
+    </select>
+
+
+</mapper>
