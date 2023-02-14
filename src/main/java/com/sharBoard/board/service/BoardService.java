@@ -4,5 +4,5 @@ import java.util.List;
 
 public interface BoardService {
 
-    public List<BoardVO> listBoard (BoardVO boardVO);
+    public List<?> listBoard (BoardVO boardVO)throws Exception;
 }

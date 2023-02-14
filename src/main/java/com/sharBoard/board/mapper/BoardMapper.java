@@ -6,10 +6,8 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Mapper
 @Repository(value = "boardMapper")
 public interface BoardMapper {
 
-    public List<BoardVO> listBoard (BoardVO boardVO);
-
+    public List<?> listBoard (BoardVO boardVO)throws Exception;
 }

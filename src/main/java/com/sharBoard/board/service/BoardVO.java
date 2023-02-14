@@ -8,6 +8,7 @@ public class BoardVO {
     private String board_crd_date;
     private String board_hit;
 
+
     public String getBoard_id() {
         return board_id;
     }

@@ -14,9 +14,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Resource(name = "boardMapper")
     private BoardMapper boardMapper;
-
     @Override
-    public List<BoardVO> listBoard(BoardVO boardVO) {
+    public List<?> listBoard(BoardVO boardVO) throws Exception {
 
         return boardMapper.listBoard(boardVO);
     }
