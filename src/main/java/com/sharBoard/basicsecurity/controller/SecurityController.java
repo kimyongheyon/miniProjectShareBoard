@@ -10,4 +10,7 @@ public class SecurityController {
     public String loginPage(){
         return "loginPage";
     }
+
+    @GetMapping("expired")
+    public String expired() {return "세션이 만료 됨";}
 }
