@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -26,19 +28,30 @@ import java.io.IOException;
 @EnableWebSecurity  /*웹 보안 활성화*/
 public class SecurityConfig {
 
-    @Bean
+/*    @Bean
     public UserDetailsService userDetailsService() {
         return userDetailsService();
-    }
+    }*/
+//    @Autowired
+//  private UserDetailsService userDetailsService;
 
-    @Autowired
-  private UserDetailsService userDetailsService;
+
+    AuthenticationManager auth;
 
     @Bean
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+        AuthenticationManagerBuilder auth = http.getSharedObject(AuthenticationManagerBuilder.class);
+
+        auth.inMemoryAuthentication().withUser("user").password("{noop}1234").roles("USER") ;/*유저 아이디를 생성하는 부분  {noop}은 뒤에서 다시 공부*/
+        auth.inMemoryAuthentication().withUser("sys").password("{noop}1234").roles("SYS","USER"); /*이런식으로 넣으면 다른 권한에도 접근할 수 있다*/
+        auth.inMemoryAuthentication().withUser("admin").password("{noop}1234").roles("ADMIN","SYS","USER");
         /*<인가정책>=============================================================*/
         http
                 .authorizeRequests()    /*요청의 의한 보안 검사*/
+                .antMatchers("/user").hasRole("USER")  /* /user로 접근하면 USER라는 권한을 심사한다는 의미*/
+                .antMatchers("/admin/pay").hasRole("ADMIN")
+                .antMatchers("/admin/**").access("hasRole('ADMIN') or hasRole('SYS')")
                 .anyRequest().authenticated(); /*어떤 요청에도 인증을 받도록 설정*/
 
         /*<인증정책>=============================================================*/
@@ -88,11 +101,11 @@ public class SecurityConfig {
                      }) /*로그아웃 성공했을 때 사용할 핸들러 위에 logoutSuccessUrl 비슷하지만 handler를 사용하면 더 많은 기능을 사용할 수 있다*/
                     .deleteCookies("remember-me") /*로그아웃할때 삭제하고 싶은 쿠키를 입력하면 쿠키가 삭제된다.*/
 
-              .and()
-              .rememberMe()  /*id나 pw를 저장하고 있는 쿠키를 생성함*/
-              .rememberMeParameter("remember") /*name 값을 바꾸는 부분 기본값은 remember-me*/
-              .tokenValiditySeconds(3600)  /*토큰이 유지되는 시간 기본 값은 14일이다.*/
-              .userDetailsService(userDetailsService) /*유저정보를 받아오는 서비스를 사용하는 부분*/
+              //.and()
+              //.rememberMe()  /*id나 pw를 저장하고 있는 쿠키를 생성함*/
+              //.rememberMeParameter("remember") /*name 값을 바꾸는 부분 기본값은 remember-me*/
+              //.tokenValiditySeconds(3600)  /*토큰이 유지되는 시간 기본 값은 14일이다.*/
+              //.userDetailsService(userDetailsService) /*유저정보를 받아오는 서비스를 사용하는 부분*/
               ;
 
               /*동시 세션제어 하는 부분=================================================================================*/
@@ -101,7 +114,6 @@ public class SecurityConfig {
                       .maximumSessions(1) /*최대 허용 가능 세션의 수 , 무제한으로 로그인 허용을 원할시에는 -1을 넣으면 된다.*/
                       .maxSessionsPreventsLogin(false) /*동시 로그인 차단 true면 기존의 접속은 살리고 현재 접속을 못하게 하고, false면 기존의 세션이 만료가 된다.*/
                       .expiredUrl("/expired") /*세션이 만료된 경우 이동 할 페이지*/
-
               ;
               
         return  http.build();
