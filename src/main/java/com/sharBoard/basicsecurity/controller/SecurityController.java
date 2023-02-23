@@ -7,15 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class SecurityController {
 
     /**
-     * 로그인 페이지 url
-     * @return
-     */
-    @GetMapping("loginPage")
-    public String loginPage(){
-        return "loginPage";
-    }
-
-    /**
      * 유저만 들어갈 수 있는 페이지
      * @return
      */

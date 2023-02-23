@@ -1,6 +1,6 @@
 body {
     background-color: #a3a3a3;
-    background-image: url("../static/images/pattern.png");
+    background-image: url("../static/img/pattern.png");
     background-size: 100px;
   
     position: fixed;
@@ -125,7 +125,7 @@ body {
     font-size: 0.75rem;
     line-height: 1.7;
     flex: 1;
-    font-size: 12x;
+    font-size: 12px;
   }
   
   .profile-username {
