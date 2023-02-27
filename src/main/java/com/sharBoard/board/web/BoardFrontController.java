@@ -20,11 +20,11 @@ public class BoardFrontController {
     @Resource(name = "boardService")
     private BoardService boardService;
 
-//    @RequestMapping("/")
-//    public String listViewBoard(BoardVO boardVO, Model model)throws Exception{
-//       List<?> resultList = boardService.listBoard(boardVO);
-//       model.addAttribute("resultList",resultList);
-//
-//        return "page/board/front/listViewBoard";
-//    }
+    @RequestMapping("front/board/listViewBoard")
+    public String listViewBoard(BoardVO boardVO, Model model)throws Exception{
+       List<?> resultList = boardService.listBoard(boardVO);
+       model.addAttribute("resultList",resultList);
+
+        return "page/board/front/listViewBoard";
+    }
 }

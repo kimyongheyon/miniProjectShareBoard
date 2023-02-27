@@ -1,87 +1,14 @@
 <!DOCTYPE html>
-<html
-        xmlns:th="http://www.thymeleaf.org">
-<!--        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"-->
-<!--        layout:decorate="~{layout/default_layout}">-->
+<html xmlns:th="http://www.thymeleaf.org">>
 <head>
     <title>Title</title>
 </head>
 <body>
-<!--<div layout:fragment="content">-->
-<!--    // 싸이월드 예시데이터-->
-<!--    <div class="bookcover">-->
-<!--        <div class="bookdot">-->
-<!--            <div class="page">-->
-<!--                <div class="profile-container">-->
-<!--                    <div class="header profile-title font-neo">-->
-<!--                        TODAY<span class="color-red"> 28</span> | TOTAL 234918-->
-<!--                    </div>-->
-<!--                    <div class="box profile-box">-->
-<!--                        <div class="profile-image">-->
-<!--&lt;!&ndash;                            <img&ndash;&gt;-->
-<!--&lt;!&ndash;                                    class="profile-image-img"&ndash;&gt;-->
-<!--&lt;!&ndash;                                    src="./static/img/cyworld1.png"&ndash;&gt;-->
-<!--&lt;!&ndash;                                    alt="프로필 이미지"&ndash;&gt;-->
-<!--&lt;!&ndash;                            />&ndash;&gt;-->
-<!--                        </div>-->
-<!--                        <div class="profile-text font-kyobohand">-->
-<!--                            ㄴr는.. 오늘도.. 눈물을.. 흘린ㄷr..★-->
-<!--                        </div>-->
-<!--                        <div class="profile-username font-kyobohand">-->
-<!--                            <span style="color: #0f1b5c">ddd</span> (♪♬)-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="content-container">-->
-<!--                    <div class="header content-title">-->
-<!--                        <div class="content-title-name">추억 상ㅈr... (*ˊᵕˋo💐o</div>-->
-<!--                        <div class="content-title-url">https://url주소/나중에입력</div>-->
-<!--                    </div>-->
-<!--                    <div class="box content-box">-->
-<!--                        <div class="box-title">Updated news</div>-->
-<!--                        <div class="news-flex-box">-->
-<!--                            <div class="news-box">-->
-<!--                                <div class="news-row">-->
-<!--                                    <div class="news-category category-pic">사진첩</div>-->
-<!--                                    <div class="news-title">일상</div>-->
-<!--                                </div>-->
-<!--                                <div class="news-row">-->
-<!--                                    <div class="news-category category-post">게시판</div>-->
-<!--                                    <div class="news-title">웹코딩</div>-->
-<!--                                </div>-->
-<!--                                <div class="news-row">-->
-<!--                                    <div class="news-category category-post">게시판</div>-->
-<!--                                    <div class="news-title">Memory</div>-->
-<!--                                </div>-->
-<!--                                <div class="news-row">-->
-<!--                                    <div class="news-category category-pic">사진첩</div>-->
-<!--                                    <div class="news-title">여행</div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                            <div class="update-box">-->
-<!--                                <div class="menu-row">-->
-<!--                                    <div class="menu-item">다이어리<span class="menu-num">0/25</span></div>-->
-<!--                                    <div class="menu-item">사진첩<span class="menu-num">0/25</span></div>-->
-<!--                                </div>-->
-<!--                                <div class="menu-row">-->
-<!--                                    <div class="menu-item">게시판<span class="menu-num">0/25</span></div>-->
-<!--                                    <div class="menu-item">방명록<span class="menu-num">0/25</span></div>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="miniroom">-->
-<!--                            <div class="box-title">Miniroom</div>-->
-<!--                            <div class="miniroom-gif-box">-->
-<!--&lt;!&ndash;                                <img src="./static/images/myroom.png" alt="000의 미니룸" />&ndash;&gt;-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="menu-container"></div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    ////////////////////////////////////-->
-<!--</div>-->
+  <table>
+      <tr  th:each="list : ${resultList}">
+          <td th:text="${list.board_title}"></td>
+      </tr>
+  </table>
+
 </body>
 </html>
