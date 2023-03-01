@@ -32,7 +32,7 @@ public class UserController {
 
         ModelMapper modelMapper = new ModelMapper();
         Account account = modelMapper.map(accountVO, Account.class); //vo있는 정보가 accountEtity로 넘어간다.
-        account.setPassword(passwordEncoder.encode(account.getPassword())); //패스워드 암호화
+        account.setPassword(passwordEncoder.encode(account.getPassword())); //패스워드 암호화;
         userSevice.inserUser(account);
 
         return "redirect:/";

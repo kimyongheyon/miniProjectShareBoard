@@ -50,7 +50,6 @@ public class SecurityConfig {
         http
                 .authorizeRequests()    /*요청의 의한 보안 검사*/
                 .antMatchers("/","/insertUsers").permitAll()
-                .antMatchers("/front/board/listViewBoard").hasRole("USER")
                 .anyRequest().authenticated() /*어떤 요청에도 인증을 받도록 설정*/
 
         /*<인증정책>=============================================================*/
@@ -59,7 +58,8 @@ public class SecurityConfig {
                 .loginPage("/login")
                 .loginProcessingUrl("/login_proc")
                 .defaultSuccessUrl("/")
-                .permitAll();
+                .permitAll()
+                ;
 
         return  http.build();
     }
